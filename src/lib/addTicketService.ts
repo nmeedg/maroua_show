@@ -1,29 +1,37 @@
 import { db } from "@/lib/firebase";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp, serverTimestamp } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
+import QRCode from "qrcode";
+import { RefObject } from "react";
 
-export const createTicket = async ({
-  nom_complet,
-  telephone,
-  type_ticket
-}: {
-  nom_complet: string;
-  telephone: string;
-  type_ticket: "vip" | "classique";
-}) => {
+export async function createClient(name: string,telephone:string, email: string) {
   const clientRef = await addDoc(collection(db, "clients"), {
-    nom_complet,
+    name,
+    email,
     telephone,
-    date_creation: Timestamp.now()
+    createdAt: serverTimestamp(),
   });
 
+  return clientRef.id;
+}
+
+export async function createTicket(clientId: string, ticketType: string) {
+  const ticketId = uuidv4();
+  const qrCode = await QRCode.toDataURL(ticketId);
   const ticketRef = await addDoc(collection(db, "tickets"), {
-    id_client: clientRef.id,
-    type_ticket,
-    statut_paiement: "en_attente",
-    code_unique: crypto.randomUUID(),
-    source_creation: "systeme",
-    date_reservation: Timestamp.now()
+    clientId,
+    ticketType,
+    ticketId,
+    qrCode,
+    createdAt: serverTimestamp(),
   });
 
-  return ticketRef.id;
-};
+  return { id: ticketRef.id, ticketId, qrCode };
+}
+
+export function downloadBase64Image(base64Data: string, fileName: string) {
+  const link = document.createElement('a');
+  link.href = base64Data;
+  link.download = fileName;
+  link.click();
+}

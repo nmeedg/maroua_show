@@ -8,9 +8,10 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
 import { toast } from "sonner";
 import { Loader2Icon } from "lucide-react";
+import { doc, getDoc } from "firebase/firestore";
 
 export function LoginForm({
   className,
@@ -32,15 +33,23 @@ export function LoginForm({
         password
       );
       const user = userCredential.user;
+      const adminDocRef = doc(db, "admins", user.uid);
+      const adminDocSnap = await getDoc(adminDocRef);
+
+      const adminData = adminDocSnap.data();
+
+      // Step 3: Merge Firebase Auth data and Firestore admin data
+      const mergedUser = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        ...adminData,
+      };
 
       // Sauvegarder les infos utiles dans localStorage
       localStorage.setItem(
         "user",
-        JSON.stringify({
-          uid: user.uid,
-          email: user.email,
-          accessToken: await user.getIdToken(), // si besoin
-        })
+        JSON.stringify(mergedUser)
       );
       setVisible(false);
 
@@ -57,13 +66,13 @@ export function LoginForm({
           <form onSubmit={handleLogin} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                 <div className="w-16 h-16 mb-4 mt-2 md:hidden ">
-                <img
-                src="/logo.png"
-                alt="Image"
-                className="w-full h-full object-cover"
-              />
-                 </div>
+                <div className="w-16 h-16 mb-4 mt-2 md:hidden ">
+                  <img
+                    src="/logo.png"
+                    alt="Image"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h1 className="text-2xl font-bold mb-4">Administration</h1>
                 <p className="text-muted-foreground text-balance">
                   Connexion à l’espace de gestion des billets pour le concert à

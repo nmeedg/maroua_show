@@ -4,7 +4,7 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "./firebase";
 
 /**
- * Crée un administrateur (Firebase Auth + Firestore)
+ * Crée un adm  inistrateur (Firebase Auth + Firestore)
  */
 export async function createAdminAccount(email: string, password: string, nom: string) {
   // Crée le compte via Firebase Auth

@@ -19,10 +19,10 @@ export function Backimg() {
   )
   const features = [
   {
-    src: "/images/im3.jpg",
+    src: "/images/bad.jpg",
   },
   {
-    src: "/images/im4.jpg",
+    src: "/images/mink.jpg",
   },
   {
     src: "/images/im5.jpg",
