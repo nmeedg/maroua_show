@@ -35,35 +35,30 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
+    name: "Empire By K'role",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/logo.png",
   },
   navMain: [
     {
-      title: "Dashboard",
+      title: "Tableau de bord",
       url: "#",
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
+      title: "Tous les tickets",
       url: "#",
       icon: IconListDetails,
     },
     {
-      title: "Analytics",
+      title: "Tickets classique",
       url: "#",
       icon: IconChartBar,
     },
     {
-      title: "Projects",
+      title: "Ticket V.I.P",
       url: "#",
       icon: IconFolder,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: IconUsers,
     },
   ],
   navClouds: [
@@ -116,41 +111,37 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Settings",
+      title: "Support",
       url: "#",
       icon: IconSettings,
     },
     {
-      title: "Get Help",
+      title: "Aide",
       url: "#",
       icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
+    }
   ],
   documents: [
     {
-      name: "Data Library",
+      name: "Statiques Globales",
       url: "#",
       icon: IconDatabase,
     },
     {
-      name: "Reports",
+      name: "Google Analytics",
       url: "#",
       icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
+    }
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({user, ...props }: React.ComponentProps<typeof Sidebar> & {
+  user: {
+    email:string,
+    accessToken: string,
+    uid: string
+  }
+} ) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -161,8 +152,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                {/* <IconInnerShadowTop className="!size-5" /> */}
+                <img src="/logo.png" className=" w-8 h-8" alt="app logo" />
+                <span className="text-base font-semibold">Empire By K'role</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -174,7 +166,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   )

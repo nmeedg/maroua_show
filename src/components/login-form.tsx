@@ -44,7 +44,7 @@ export function LoginForm({
       );
       setVisible(false);
 
-      router.push("/admin"); // rediriger vers admin
+      router.push("/dashboard"); // rediriger vers admin
     } catch (err: any) {
       toast.error(err.message);
       setVisible(false);

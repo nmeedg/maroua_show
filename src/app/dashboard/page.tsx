@@ -1,3 +1,5 @@
+'use client'
+
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/data-table"
@@ -9,8 +11,26 @@ import {
 } from "@/components/ui/sidebar"
 
 import data from "./data.json"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 export default function Page() {
+    const [user, setUser] = useState<any>(null);
+    const router = useRouter();
+  
+    useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (!storedUser) {
+        toast.warning("Vous n'etes pas connecte");
+        router.push("/auth/login"); // si pas connecté
+      } else {
+        toast.success("Bienvenue");
+        setUser(JSON.parse(storedUser));
+      }
+    }, []);
+  
+    if (!user) return <p>Chargement...</p>;
   return (
     <SidebarProvider
       style={
@@ -20,7 +40,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+      <AppSidebar variant="inset" user={user} />
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">

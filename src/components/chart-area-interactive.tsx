@@ -167,10 +167,10 @@ export function ChartAreaInteractive() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Total Visitors</CardTitle>
+        <CardTitle>Nombre de visiteurs total</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Total for the last 3 months
+            Nomre de visiteurs de cette semaine
           </span>
           <span className="@[540px]/card:hidden">Last 3 months</span>
         </CardDescription>
@@ -196,13 +196,13 @@ export function ChartAreaInteractive() {
             </SelectTrigger>
             <SelectContent className="rounded-xl">
               <SelectItem value="90d" className="rounded-lg">
-                Last 3 months
+                Cette semaine
               </SelectItem>
               <SelectItem value="30d" className="rounded-lg">
-                Last 30 days
+                Ce mois
               </SelectItem>
               <SelectItem value="7d" className="rounded-lg">
-                Last 7 days
+                Aujourd'hui
               </SelectItem>
             </SelectContent>
           </Select>

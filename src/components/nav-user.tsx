@@ -28,17 +28,21 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useRouter } from "next/navigation"
+
 
 export function NavUser({
   user,
 }: {
   user: {
-    name: string
+    accessToken: string
     email: string
-    avatar: string
+    uid: string
   }
 }) {
   const { isMobile } = useSidebar()
+  const router = useRouter()
+
 
   return (
     <SidebarMenu>
@@ -50,11 +54,11 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarImage src="/logo.png" alt={user.uid} />
+                <AvatarFallback className="rounded-lg">EK</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+                <span className="truncate font-medium">Empire By K'role</span>
                 <span className="text-muted-foreground truncate text-xs">
                   {user.email}
                 </span>
@@ -71,14 +75,14 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage src="/logo.png" alt={user.uid} />
+                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
-                  </span>
+                  <span className="truncate font-medium">Empire By K'role</span>
+                <span className="text-muted-foreground truncate text-xs">
+                  {user.email}
+                </span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -86,11 +90,7 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <IconUserCircle />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
+                Compte
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconNotification />
@@ -98,9 +98,12 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {
+          localStorage.removeItem("user");
+          router.push("/auth/login");
+        }}>
               <IconLogout />
-              Log out
+              Deconnexion
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
