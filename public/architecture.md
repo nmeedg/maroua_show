@@ -3,12 +3,12 @@
 ├── layout.tsx                  # Layout global
 ├── page.tsx                    # Page d'accueil (/)
 │
-├── events/                     # Tous les événements
+<!-- ├── events/                     # Tous les événements
 │   ├── page.tsx                # Liste des événements (/events)
 │   └── [id]/                   # Détail d’un événement
 │       ├── page.tsx            # Page événement (/events/42)
 │       └── reserve/            # Réserver pour un événement
-│           └── page.tsx        # (/events/42/reserve)
+│           └── page.tsx        # (/events/42/reserve) -->
 │
 ├── tickets/                    # Gestion des tickets
 │   ├── [ticketId]/             # Détail ticket
@@ -24,7 +24,7 @@
 │   └── profile/                # Profil utilisateur
 │       └── page.tsx            # (/dashboard/profile)
 │
-├── admin/                      # Espace admin
+<!-- ├── admin/                      # Espace admin
 │   ├── layout.tsx              # Layout admin
 │   ├── page.tsx                # Accueil admin (/admin)
 │   ├── events/                 # CRUD des événements
@@ -32,7 +32,7 @@
 │   │   └── new/                # Créer un événement
 │   │       └── page.tsx
 │   └── reservations/           # Voir les réservations
-│       └── page.tsx
+│       └── page.tsx -->
 │
 ├── auth/                       # Authentification
 │   ├── login/                  # (/auth/login)
