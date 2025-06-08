@@ -11,6 +11,7 @@ import {
   IconFileWord,
   IconFolder,
   IconHelp,
+  IconHome,
   IconInnerShadowTop,
   IconListDetails,
   IconReport,
@@ -111,14 +112,9 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Support",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Aide",
-      url: "#",
-      icon: IconHelp,
+      title: "Acceuil",
+      url: "/",
+      icon: IconHome,
     }
   ],
   documents: [
