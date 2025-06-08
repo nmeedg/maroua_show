@@ -53,7 +53,7 @@ export function LoginForm({
             </div>
           </form>
           <div className="bg-muted relative hidden md:block overflow-hidden">
-            <div className="bg-foreground rounded- inset-0 h-full w-full flex justify-center items-center ">
+            <div className=" bg-neutral-950 rounded- inset-0 h-full w-full flex justify-center items-center ">
               <img
                 src="/logo.png"
                 alt="Image"
