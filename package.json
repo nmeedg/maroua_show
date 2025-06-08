@@ -9,15 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
+    "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "libphonenumber-js": "^1.12.9",
     "lucide-react": "^0.513.0",
     "next": "15.3.3",
     "next-theme": "^0.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.0"
+    "react-phone-number-input": "^3.4.12",
+    "tailwind-merge": "^3.3.0",
+    "validator": "^13.15.15"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
