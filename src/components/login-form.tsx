@@ -57,6 +57,13 @@ export function LoginForm({
           <form onSubmit={handleLogin} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
+                 <div className="w-16 h-16 mb-4 mt-2 md:hidden ">
+                <img
+                src="/logo.png"
+                alt="Image"
+                className="w-full h-full object-cover"
+              />
+                 </div>
                 <h1 className="text-2xl font-bold mb-4">Administration</h1>
                 <p className="text-muted-foreground text-balance">
                   Connexion à l’espace de gestion des billets pour le concert à
@@ -70,7 +77,7 @@ export function LoginForm({
                   onChange={(e) => setEmail(e.target.value)}
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="username@example.com"
                   required
                 />
               </div>
@@ -100,14 +107,14 @@ export function LoginForm({
               ) : (
                 <Button
                   type="submit"
-                  className="w-full dark:bg-yellow-400 cursor-pointer dark:hover:bg-yellow-500"
+                  className="w-full dark:bg-primary cursor-pointer dark:hover:bg-yellow-500"
                 >
                   Se connecter
                 </Button>
               )}
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
-                  Bad Nova x Minks
+                  Bad Nova x Minks Concert
                 </span>
               </div>
             </div>
