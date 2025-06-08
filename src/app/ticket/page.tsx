@@ -51,13 +51,13 @@ export default function TicketPage() {
                 </div>
                 <div className="relative z-10">
                     <div className='flex items-center justify-center'>
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-10">
+                        <h1 className="text-2xl mt-6 sm:text-3xl md:text-4xl font-bold text-white text-center mb-10">
                             Achetez vos tickets pour le concert de Mink's & Bad Nova
                         </h1>
                     </div>
-                    <div className="mx-auto mt-10 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                    <div className="mx-auto mt-7 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
                         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-                            <div className="w-full border-2 bg-blue-600/20 rounded-[15px]">
+                            <div className="w-full border-2 bg-blue-800/30 rounded-[15px]">
                                 <Image
                                     src="/images/bi.png"
                                     alt="Tickets Concert"
@@ -67,7 +67,7 @@ export default function TicketPage() {
                                     priority
                                 />
                             </div>
-                            <div className="space-y-6 w-full rounded-[15px] bg-blue-600/20 border-2 p-6">
+                            <div className="space-y-6 w-full rounded-[15px] bg-blue-800/30 border-2 p-6">
                                 <div className='flex items-center justify-center mb-30'>
                                     <Image src="/images/logo.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} className='items-center justify-center' />
                                 </div>
@@ -101,7 +101,7 @@ export default function TicketPage() {
                                                     return;
                                             }
                                             else {
-                                                setOpen(false)}}}
+                                                setOpen(true)}}}
                                     className="w-full bg-yellow-600 hover:bg-yellow-700 mt-10 text-white font-semibold py-2 px-4 rounded"
                                 >
                                     Continuer
@@ -111,7 +111,7 @@ export default function TicketPage() {
                     </div>
                     <div className='flex items-center justify-center'>
                         <div className="absolute z-10 px-4 py-10 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-                            <Dialog open={open} onClose={setOpen} className="relative bg-black/90 text-cyan-200 z-20">
+                            <Dialog open={open} onClose={setOpen} className="relative bg-black/90 text-cyan-200 z-20 rounded">
                                 <DialogBackdrop className="fixed inset-0 bg-blue-900/20" />
                                 <div className="fixed inset-0 flex items-center justify-center p-4">
                                     <DialogPanel className="w-full max-w-lg bg-black/90 dark:bg-black/90 p-6 rounded shadow-xl">
@@ -148,12 +148,15 @@ export default function TicketPage() {
                                             />
                                             {email && !emailValid && <p className="text-yellow-500 text-sm">Email invalide</p>}
                                             {(name && emailValid && phoneValid) && (
-                                                <div className="flex flex-col space-y-3 pt-4">
+                                                <div className="flex flex-col space-y-3 pt-6 gap-3">
                                                     <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
                                                         Payer avec Orange Money
                                                     </button>
                                                     <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                                         Payer avec Mobile Money
+                                                    </button>
+                                                    <button className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                                                        Voir les lieux d'achat en prensentiel
                                                     </button>
                                                 </div>
                                             )}
