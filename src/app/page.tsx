@@ -1,103 +1,86 @@
-import Image from "next/image";
+'use client';
+
+import { MapIcon, MapPinIcon } from '@heroicons/react/16/solid';
+import Image from 'next/image';
+import {
+  ArrowPathIcon,
+  CloudArrowUpIcon,
+  FingerPrintIcon,
+  LockClosedIcon,
+} from '@heroicons/react/24/outline';
+import { LocateFixedIcon, LocationEditIcon, Music, Music2Icon, Music3Icon, ShowerHeadIcon } from 'lucide-react';
+import { ThemeProvider } from "next-theme";
+
+const features = [
+  {
+    name: "Deux artistes, un show",
+    description:
+      "Mink's et Bad Nova réunis sur une même scène pour un concert exceptionnel. Un événement musical à ne surtout pas manquer.",
+    icon: Music,
+  },
+  {
+    name: "Sécurisation des billets",
+    description:
+      "Chaque billet est unique et vérifiable. Grâce à notre système sécurisé, vous assistez au concert en toute confiance.",
+    icon: LockClosedIcon,
+  },
+  {
+    name: "Accès simple et rapide",
+    description:
+      "Réservez vos places en ligne en quelques clics et téléchargez immédiatement votre billet.",
+    icon: ArrowPathIcon,
+  },
+  {
+    name: "Vivez l'expérience à Maroua",
+    description:
+      "Le concert se déroulera à Maroua, 400 places Pitoiré, le 12 juin à partir de 18h. Préparez-vous à vibrer avec Empire by Krole.",
+    icon: MapPinIcon,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        <ThemeProvider defaultTheme="dark" attribute="class">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      <div className='flex items-center justify-center'>
+        <Image src="/images/logo.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} className='items-center justify-center' />
+      </div>
+      <div className="py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold text-yellow-600">
+              Empire by Krole présente
+            </h2>
+            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty dark:text-white sm:text-5xl lg:text-balance">
+              Concert exceptionnel  Mink's & Bad Nova
+            </p>
+            <p className="mt-6 text-lg text-gray-600">
+              Réservez vos billets dès maintenant pour une soirée explosive de musique live à Maroua à 400 places.
+              Rendez-vous le 12 juin à 18h. Nombre de places limité !
+            </p>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+              {features.map((feature) => (
+                <div key={feature.name} className="relative pl-16">
+                  <dt className="text-base font-semibold">
+                    <div className="absolute top-0 left-0 flex size-10 items-center justify-center rounded-lg bg-yellow-600">
+                      <feature.icon aria-hidden="true" className="size-6  text-black" />
+                    </div>
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-2 text-base text-gray-600">
+                    {feature.description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
+        </ThemeProvider>
+
   );
 }

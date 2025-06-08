@@ -21,7 +21,8 @@
 │   ├── page.tsx                # Accueil dashboard (/dashboard)
 │   ├── reservations/           # Liste des réservations
 │   │   └── page.tsx            # (/dashboard/reservations)
-│   └── profile/                # Profil utilisateur
+│   └── profile/        
+z        # Profil utilisateur
 │       └── page.tsx            # (/dashboard/profile)
 │
 <!-- ├── admin/                      # Espace admin
