@@ -13,6 +13,7 @@ import {
 import { LocateFixedIcon, LocationEditIcon, Music, Music2Icon, Music3Icon, ShowerHeadIcon, TicketCheck, TicketCheckIcon, TicketIcon } from 'lucide-react';
 import { ThemeProvider } from "next-theme";
 import { Backimg } from './components/backImg';
+import { FooterClips } from './components/footer';
 import { DocumentCurrencyDollarIcon } from '@heroicons/react/20/solid';
 
 const features = [
@@ -58,9 +59,10 @@ export default function Home() {
           <div className='flex items-center justify-center'>
             <Image src="/images/logo.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
           </div>
-          <div className="mx-auto mt-7 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-              <div className="py-4 sm:py-12">
+          <div className="mx-auto mt-10 w-full px-4 sm:mt-20 lg:mt-4 max-w-7xl">
+            <dl className="w-full grid grid-cols-1 gap-x-2 gap-y-2 lg:flex lg:justify-between">
+
+              <div className="sm:py-12 h-200">
 
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                   <div className='flex-col items-center justify-center text-center'>
@@ -100,26 +102,33 @@ export default function Home() {
                   <Button variant="outline" className='w-80 h-15'><Link href="/ticket" className='font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'>Achète ton ticket</Link></Button>
                 </div>
               </div>
-              <div className="py-4 sm:py-12 gap-6">
-                    <div className='flex items-center justify-between'>
-                      Mon pétit halla Madrid
-                <Image src="/images/mic.png" alt="Mink's et Bad Nova sur scène" width={200} height={300} />
-                
-              </div>
-              <div className='flex items-center justify-between'>
 
-                <Image src="/images/mink.jpg" alt="Mink's et Bad Nova sur scène" width={200} height={300} />
-                Le gard là est laid
+              <div className="grid-cols-1 sm:py-12 gap-y-6 h-190">
+                <div className='flex items-center gap-10 mb-1'>
+
+                  <Image src="/images/bouges.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
+                  <Image src="/images/mic.png" alt="Mink's et Bad Nova sur scène" width={100} height={150} />
+
+                </div>
+                <div className='flex items-center gap-10 mb-1'>
+
+                  <Image src="/images/minks.png" alt="Mink's et Bad Nova sur scène" width={100} height={150} />
+                  <Image src="/images/laid.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
+                </div>
+                <div className='flex items-center gap-10'>
+                  <Image src="/images/halla.png" alt="Mink's et Bad Nova sur scène" className='mt-5' width={100} height={100} />
+                  <Image src="/images/madrid.png" alt="Mink's et Bad Nova sur scène" width={100} height={150} />
+                </div>
+
               </div>
-              <div className='flex items-center justify-between'>
-                Halla Madrid
-                <Image src="/images/madrid.png" alt="Mink's et Bad Nova sur scène" width={200} height={300} />
-              </div>
-              </div>
-              
+
             </dl>
           </div>
+          <div>
+            <FooterClips />
+          </div>
         </div>
+
       </div>
     </ThemeProvider>
 
