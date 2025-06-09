@@ -39,9 +39,9 @@ export default function TicketPage() {
     };
 
     return (
-        <ThemeProvider defaultTheme="dark" attribute="class">
-            <div className="relative w-full min-h-screen pb-16">
-                <div className='flex items-start justify-start top-0 left-0 w-full h-full absolute z-3'>
+        <div>
+            <div className="w-full  min-h-screen pb-16">
+                <div className='flex items-start justify-center top-0 left-0 w-full h-full absolute z-0'>
                     <div className='relative'>
                         <div className='top-0 left-0'>
                             <Backimg />
@@ -50,13 +50,13 @@ export default function TicketPage() {
                     </div>
                 </div>
                 <div className="relative z-10">
-                    <div className='flex items-center justify-center'>
-                        <h1 className="text-2xl mt-6 sm:text-3xl md:text-4xl font-bold text-white text-center mb-10">
+                    <div className=" bg-white/20 backdrop-blur-lg my-4 mx-8 rounded-md">
+                        <h1 className=" transition-all animate-pulse text-xl bg-clip-text bg-gradient-to-br from-white to-yellow-300  md:text-2xl font-bold text-transparent text-center py-4">
                             Achetez vos tickets pour le concert de Mink's & Bad Nova
-                        </h1>
+                        </h1> 
                     </div>
                     <div className="mx-auto mt-7 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-                        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                        <div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
                             <div className="w-full border-2 bg-blue-800/30 rounded-[15px]">
                                 <Image
                                     src="/images/bi.png"
@@ -107,7 +107,7 @@ export default function TicketPage() {
                                     Continuer
                                 </button>
                             </div>
-                        </dl>
+                        </div>
                     </div>
                     <div className='flex items-center justify-center'>
                         <div className="absolute z-10 px-4 py-10 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
@@ -168,6 +168,6 @@ export default function TicketPage() {
                     </div>
                 </div>
             </div>
-        </ThemeProvider>
+        </div>
     );
 }
