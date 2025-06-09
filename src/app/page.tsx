@@ -3,6 +3,7 @@
 import { MapIcon, MapPinIcon } from '@heroicons/react/16/solid';
 import { Button } from "@/components/ui/button"
 import Link from 'next/link';
+import { motion } from "framer-motion";
 import Image from 'next/image';
 import {
   ArrowPathIcon,
@@ -12,9 +13,10 @@ import {
 } from '@heroicons/react/24/outline';
 import { LocateFixedIcon, LocationEditIcon, Music, Music2Icon, Music3Icon, ShowerHeadIcon, TicketCheck, TicketCheckIcon, TicketIcon } from 'lucide-react';
 import { ThemeProvider } from "next-theme";
-import { Backimg } from './components/backImg';
+import { Backimg, ParticlesBackground } from './components/backImg';
 import { FooterClips } from './components/footer';
 import { DocumentCurrencyDollarIcon } from '@heroicons/react/20/solid';
+
 
 const features = [
   {
@@ -59,12 +61,26 @@ export default function Home() {
           <div className='flex items-center justify-center'>
             <Image src="/images/logo.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
           </div>
-          <div className="mx-auto mt-10 w-full px-4 sm:mt-20 lg:mt-4 max-w-7xl">
+          <div className="mx-auto w-full px-4 sm:mt-10 lg:mt-4 max-w-7xl">
             <dl className="w-full grid grid-cols-1 gap-x-2 gap-y-2 lg:flex lg:justify-between">
+              <ParticlesBackground />
 
-              <div className="sm:py-12 h-200">
+              <div className="hidden lg:block lg:h-200 lg:ml-11">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: -5 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                  className='flex items-center gap-6 mb-1'>
+                  <Image src="/images/minks.png" alt="Mink's et Bad Nova sur scène" width={150} height={190} />
+                  <Image src="/images/laid.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
+                </motion.div>
+              </div>
+              <div className="sm:py-12 lg:h-200">
 
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.4, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }} className="mx-auto max-w-7xl px-6 lg:px-8">
                   <div className='flex-col items-center justify-center text-center'>
 
                     <h2 className="text-base font-semibold text-yellow-600">
@@ -78,7 +94,7 @@ export default function Home() {
                       Rendez-vous le 12 juin à 18h. Nombre de places limité !
                     </p>
                   </div>
-                </div>
+                </motion.div>
 
                 <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
                   <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
@@ -98,27 +114,26 @@ export default function Home() {
                   </dl>
                 </div>
 
-                <div className="flex items-center justify-center mt-10">
-                  <Button variant="outline" className='w-80 h-15'><Link href="/ticket" className='font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'>Achète ton ticket</Link></Button>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5, y: 40 }}
+                  animate={{ opacity: 1, scale: 1, y: -5 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-center justify-center mt-10">
+                  <Button variant="outline" className='w-80 h-15'><Link href="/tickets" className='font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'>Achète ton ticket</Link></Button>
+                </motion.div>
               </div>
 
-              <div className="grid-cols-1 sm:py-12 gap-y-6 h-190">
-                <div className='flex items-center gap-10 mb-1'>
+              <div className="sm:py-12 lg:h-260">
+                <motion.div
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }} className='flex items-center gap-6 mb-1'>
 
                   <Image src="/images/bouges.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
-                  <Image src="/images/mic.png" alt="Mink's et Bad Nova sur scène" width={100} height={150} />
+                  <Image src="/images/mic.png" alt="Mink's et Bad Nova sur scène" width={130} height={190} />
 
-                </div>
-                <div className='flex items-center gap-10 mb-1'>
-
-                  <Image src="/images/minks.png" alt="Mink's et Bad Nova sur scène" width={100} height={150} />
-                  <Image src="/images/laid.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
-                </div>
-                <div className='flex items-center gap-10'>
-                  <Image src="/images/halla.png" alt="Mink's et Bad Nova sur scène" className='mt-5' width={100} height={100} />
-                  <Image src="/images/madrid.png" alt="Mink's et Bad Nova sur scène" width={100} height={150} />
-                </div>
+                  <Image src="/images/minks.png" alt="Mink's et Bad Nova sur scène" className='lg:hidden' width={105} height={190} />
+                  <Image src="/images/laid.png" alt="Mink's et Bad Nova sur scène" className='lg:hidden' width={100} height={100} />
+                </motion.div>
 
               </div>
 
@@ -130,6 +145,13 @@ export default function Home() {
         </div>
 
       </div>
+      <footer className="w-full py-4 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
+        <p className="text-center text-sm text-gray-700 dark:text-gray-300">
+          © Horizon 2025 — Tous droits réservés.
+        </p>
+      </footer>
+
+
     </ThemeProvider>
 
   );

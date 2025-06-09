@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+
+import { toast } from "sonner";
 import {
     Dialog,
     DialogBackdrop,
@@ -97,7 +99,7 @@ export default function TicketPage() {
                                 <button
                                     onClick={() =>{
                                                 if (total === 0) {
-                                                    alert("Veuillez sélectionner au moins un ticket.");
+                                                    toast.warning("Veuillez sélectionner au moins un ticket.");
                                                     return;
                                             }
                                             else {
