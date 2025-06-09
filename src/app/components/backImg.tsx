@@ -7,6 +7,7 @@ import Autoplay from "embla-carousel-autoplay"
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { Card, CardContent } from "@/components/ui/card"
+import type { Engine } from "tsparticles-engine";
 import {
   Carousel,
   CarouselContent,
@@ -69,7 +70,7 @@ const h = 800;
 
 
 export function ParticlesBackground() {
-  const particlesInit = useCallback(async (engine) => {
+  const particlesInit = useCallback(async (engine: Engine) => {
     // engine est fourni automatiquement par <Particles />, pas besoin de le déclarer ailleurs
     await loadFull(engine);
   }, []);

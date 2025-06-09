@@ -53,6 +53,7 @@
     "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.0",
     "tsparticles": "^2.12.0",
+    "tsparticles-engine": "^2.12.0",
     "uuid": "^11.1.0",
     "validator": "^13.15.15",
     "vaul": "^1.1.2",
