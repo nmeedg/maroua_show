@@ -45,14 +45,36 @@ export default function LoginPage({
   const [open, setOpen] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  async function processPayment() {
+    try {
+      const response = await fetch('/api/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phoneNumber: '656893065',
+          amount: 1000, // Example amount
+          service: 'your_service',
+        }),
+      });
+      console.log(response);
 
-  const handleClick = (e: FormEvent) => {
+      const data = await response.json();
+      console.log('Payment response:', data);
+    } catch (error) {
+      console.error('Payment error:', error);
+    }
+  }
+
+  const handleClick = async (e: FormEvent) => {
     e.preventDefault();
     if (nom == "" || prenom == "" || email == "" || telephone == null) {
       toast.warning("Il faut remplir tous les champs");
       return;
     }
-    setOpen(true);
+    await processPayment();
+    // setOpen(true);
   };
   const router = useRouter();
 
@@ -171,13 +193,13 @@ export default function LoginPage({
                     <Button onClick={(e) => {
                       e.preventDefault();
                       handleClick(e);
-                      if (ticketType == "classique") {
-                        toast.info("Vous avez choisi le ticket classique");
-                      } else {
-                        toast.info("Vous avez choisi le ticket VIP");
-                      }
+                      // if (ticketType == "classique") {
+                      //   toast.info("Vous avez choisi le ticket classique");
+                      // } else {
+                      //   toast.info("Vous avez choisi le ticket VIP");
+                      // }
                       //window.location.href = ticketType == "classique" ? liens.cinqmil : liens.dixmil;
-                      window.location.href = "https://pay.mesomb.com/l/eo0TGFAKFcXEAjDqhvGi";
+                      // window.location.href = "https://pay.mesomb.com/l/eo0TGFAKFcXEAjDqhvGi";
                     }} className="w-full">
                       Je paie en ligne
                     </Button>
