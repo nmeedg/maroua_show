@@ -52,13 +52,13 @@ function Page() {
       ctx.font = "38px Arial";
       ctx.fillStyle = "black";
       ctx.fillText(nom?.toUpperCase() ?? "", 176, 473); // Adapter la position (x, y)
-      const montant = ticket.ticketType == "vip" ? "10 000" : "5000";
+      const montant = ticket?.ticketType == "vip" ? "10 000" : "5000";
       ctx.fillText(`${montant} FCFA`, 1110, 473); // Adapter la position (x, y)
 
       // Générer le QR Code
       //   const qrData = await QRCode.toDataURL(ticketId);
       const qrImage = new Image();
-      qrImage.src = ticket.qrCode;
+      qrImage.src = ticket?.qrCode ?? "";
 
       qrImage.onload = () => {
         ctx.drawImage(qrImage, 1400, 240, 150, 150);
