@@ -66,7 +66,6 @@ export function AdduserForm({
                   placeholder="m@yahoo.fr"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="grid gap-3">

@@ -2,18 +2,15 @@
 
 import { AppSidebar } from "@/components/app-sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import data from "./data.json";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { collection, DocumentData, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import PaymentChart from "@/components/Paiements";
 import { DataTableDemo } from "@/components/ClientTable";
 
 export default function Page() {
@@ -21,8 +18,7 @@ export default function Page() {
   const router = useRouter();
   const [vipCount, setVipCount] = useState(0);
   const [classicCount, setClassicCount] = useState(0);
-  const [tickets, setTickets] = useState<DocumentData[]>([]);
-  const [clients, setClients] = useState<DocumentData[]>([]);
+  
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -36,19 +32,13 @@ export default function Page() {
     const fetchData = async () => {
       const ticketSnapshot = await getDocs(collection(db, "tickets"));
       const ticketsData = ticketSnapshot.docs.map((doc) => doc.data());
-      setTickets(ticketsData);
       setVipCount(ticketsData.filter((t) => t.ticketType === "vip").length);
       setClassicCount(
         ticketsData.filter((t) => t.ticketType === "classique").length
       );
-
-      const clientSnapshot = await getDocs(collection(db, "clients"));
-      setClients(
-        clientSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      );
     };
     fetchData();
-  }, []);
+  }, [router]);
 
   const total = vipCount + classicCount;
   const revenu = vipCount * 10000 + classicCount * 5000;

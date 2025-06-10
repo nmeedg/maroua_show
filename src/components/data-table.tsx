@@ -31,7 +31,6 @@ import {
   IconGripVertical,
   IconLayoutColumns,
   IconLoader,
-  IconPlus,
   IconTableExport,
   IconTrendingUp,
 } from "@tabler/icons-react"
@@ -229,7 +228,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: "limit",
-    header: () => <div className="w-full text-right">Date d'achat</div>,
+    header: () => <div className="w-full text-right">Date d&apos;achat</div>,
     cell: ({ row }) => (
       <form
         onSubmit={(e) => {

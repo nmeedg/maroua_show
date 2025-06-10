@@ -15,7 +15,7 @@ import { db } from "@/lib/firebase";
 import { toast } from "sonner";
 import { downloadBase64Image } from "@/lib/addTicketService";
 
-function page() {
+function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const params = useSearchParams();
   const nom = params.get("nom");
@@ -162,4 +162,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

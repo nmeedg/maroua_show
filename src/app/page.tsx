@@ -10,7 +10,6 @@ import {
   LockClosedIcon,
 } from '@heroicons/react/24/outline';
 import { ListStartIcon,  Music } from 'lucide-react';
-import { ThemeProvider } from "next-theme";
 import { Backimg, ParticlesBackground } from './components/backImg';
 import { FooterClips } from './components/footer';
 import { useRouter } from 'next/navigation';
@@ -86,7 +85,7 @@ export default function Home() {
                       Empire by Krole présente
                     </h2>
                     <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty dark:text-white sm:text-5xl lg:text-balance">
-                      Concert exceptionnel  Mink's & Bad Nova
+                      Concert exceptionnel  Mink&apos;s & Bad Nova
                     </p>
                     <p className="mt-6 text-lg text-gray-400">
                       Réservez vos billets dès maintenant pour une soirée explosive de musique live à Maroua à 400 places.

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient, createTicket } from "@/lib/addTicketService";
 
-function page() {
+function Page() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -48,7 +48,7 @@ function page() {
     };
 
     saveData()
-  }, []);
+  }, [router]);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <h1 className="text-2xl font-bold text-center block my-20 ">
@@ -67,4 +67,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

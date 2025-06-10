@@ -1,11 +1,10 @@
 "use client";
 
-import { CircleCheck, GalleryVerticalEnd, Loader2Icon } from "lucide-react";
+import { CircleCheck, Loader2Icon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Backimg } from "../components/backImg";
 import Link from "next/link";
 import { FormEvent, useRef, useState } from "react";
 import RadioCardsDemo from "@/components/ticketSelector";
@@ -20,30 +19,19 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { IconTicket } from "@tabler/icons-react";
 import { toast } from "sonner";
-import QRCode from "qrcode";
 import { v4 as uuidv4 } from "uuid";
-import {
-  createClient,
-  createTicket,
-  downloadBase64Image,
-} from "@/lib/addTicketService";
-
 export default function LoginPage({
   className,
-  ...props
 }: React.ComponentProps<"form">) {
   const [loading, setLoading] = useState(false);
   const [nom, setNom] = useState("");
-  const [lien, setLien] = useState("");
   const [prenom, setprenom] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState<string>("");
   const [ticketType, setTycketType] = useState("vip");
   const formRef = useRef<HTMLFormElement>(null);
   const [open, setOpen] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleClick = async (e: FormEvent) => {
     e.preventDefault();
@@ -124,7 +112,7 @@ export default function LoginPage({
             <div className="text-primary-foreground flex size-10 items-center justify-center">
               <img src="/logo.png" className="w-9"></img>
             </div>
-            Empire By K'role
+            Empire By K&apos;role
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
@@ -133,7 +121,7 @@ export default function LoginPage({
               <div className="flex flex-col items-center gap-2 text-center">
                 <h1 className="text-2xl font-bold">Achetez votre ticket</h1>
                 <p className="text-muted-foreground text-sm text-balance">
-                  Reservez votre place maintenant pour le concert de Mink's &
+                  Reservez votre place maintenant pour le concert de Mink&apos;s &
                   Bad Nova
                 </p>
               </div>

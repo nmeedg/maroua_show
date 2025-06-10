@@ -12,7 +12,6 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Backimg } from "../components/backImg";
-import { ThemeProvider } from "next-theme";
 import isEmail from "validator/lib/isEmail";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -54,7 +53,7 @@ export default function TicketPage() {
                 <div className="relative z-10">
                     <div className=" bg-white/20 backdrop-blur-lg my-4 mx-8 rounded-md">
                         <h1 className=" transition-all animate-pulse text-xl bg-clip-text bg-gradient-to-br from-white to-yellow-300  md:text-2xl font-bold text-transparent text-center py-4">
-                            Achetez vos tickets pour le concert de Mink's & Bad Nova
+                            Achetez vos tickets pour le concert de Mink&apos;s & Bad Nova
                         </h1> 
                     </div>
                     <div className="mx-auto mt-7 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -158,7 +157,7 @@ export default function TicketPage() {
                                                         Payer avec Mobile Money
                                                     </button>
                                                     <button className="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                                        Voir les lieux d'achat en prensentiel
+                                                        Voir les lieux d&apos;achat en prensentiel
                                                     </button>
                                                 </div>
                                             )}
