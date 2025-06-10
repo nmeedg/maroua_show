@@ -40,7 +40,7 @@ const features = [
   {
     name: "Vivez l'expérience à Maroua",
     description:
-      "Le concert se déroulera à Maroua, 400 places Pitoiré, le 12 juin à partir de 18h. Préparez-vous à vibrer avec Empire by Krole.",
+      "Le concert se déroulera à Maroua, 400 places Pitoiré, le 14 juin à partir de 18h. Préparez-vous à vibrer avec Empire by Krole.",
     icon: MapPinIcon,
   },
 ];
@@ -91,7 +91,7 @@ export default function Home() {
                     </p>
                     <p className="mt-6 text-lg text-gray-400">
                       Réservez vos billets dès maintenant pour une soirée explosive de musique live à Maroua à 400 places.
-                      Rendez-vous le 12 juin à 18h. Nombre de places limité !
+                      Rendez-vous le 14 juin à 18h. Nombre de places limité !
                     </p>
                   </div>
                 </motion.div>
@@ -143,8 +143,13 @@ export default function Home() {
             <FooterClips />
           </div>
         </div>
-
       </div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: -5 }}
+        transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-end justify-end mt-1">
+        <Button variant="outline"><Link href="/dashboard" className='font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'>Dashboard</Link></Button>
+      </motion.div>
       <footer className="w-full py-4 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
         <p className="text-center text-sm text-gray-700 dark:text-gray-300">
           © Horizon 2025 — Tous droits réservés.
