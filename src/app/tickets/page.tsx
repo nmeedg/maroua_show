@@ -36,14 +36,15 @@ export default function LoginPage({
 }: React.ComponentProps<"form">) {
   const [loading, setLoading] = useState(false);
   const [nom, setNom] = useState("");
+  const [lien, setLien] = useState("");
   const [prenom, setprenom] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState<string>("");
-  const [ticketType, setTycketType] = useState("classique");
+  const [ticketType, setTycketType] = useState("vip");
   const formRef = useRef<HTMLFormElement>(null);
   const [open, setOpen] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+
 
   const handleClick = (e: FormEvent) => {
     e.preventDefault();
@@ -57,18 +58,23 @@ export default function LoginPage({
 
   const handleTicket = async () => {
     setLoading(true);
+
     try {
       const clientID = await createClient(`${nom} ${prenom}`, telephone, email);
       const ticketInfo = await createTicket(clientID, ticketType);
       toast.success("Ticket enregistrer avec success");
       setLoading(false);
-      const username= `${nom} ${prenom}`
+      const username = `${nom} ${prenom}`
       router.push(`/confirmation?nom=${encodeURIComponent(username)}&id=${ticketInfo.id}&type=${ticketType}`)
     } catch (error: any) {
       toast.error(error.message);
       setLoading(false);
     }
   };
+  const liens = {
+    cinqmil: "https://pay.mesomb.com/l/uwhnSJovDqbOjxXZWHgv",
+    dixmil: "https://pay.mesomb.com/l/Tw4NDZWHtrCmFhmHnk5Y"
+  }
   return (
     <div className="grid min-h-svh lg:bg-transparent lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
@@ -162,7 +168,17 @@ export default function LoginPage({
 
                 <Dialog open={open} onOpenChange={(e) => setOpen(e)}>
                   <DialogTrigger asChild>
-                    <Button onClick={handleClick} className="w-full">
+                    <Button onClick={(e) => {
+                      e.preventDefault();
+                      handleClick(e);
+                      if (ticketType == "classique") {
+                        toast.info("Vous avez choisi le ticket classique");
+                      } else {
+                        toast.info("Vous avez choisi le ticket VIP");
+                      }
+                      //window.location.href = ticketType == "classique" ? liens.cinqmil : liens.dixmil;
+                      window.location.href = "https://pay.mesomb.com/l/eo0TGFAKFcXEAjDqhvGi";
+                    }} className="w-full">
                       Je paie en ligne
                     </Button>
                   </DialogTrigger>
@@ -276,8 +292,7 @@ export default function LoginPage({
           </div>
         </div>
       </div>
-      <div className="overflow-hidden bg-slate-100 hidden lg:block">
-        <img src="/billet_vide.png" alt="dwds" className="" />
+      <div className="overflow-hidden hidden lg:block">
         <img src="/billet_vide.png" alt="dwds" className="" />
         <img src="/billet_vide.png" alt="dwds" className="" />
         <img src="/billet_vide.png" alt="dwds" className="" />
