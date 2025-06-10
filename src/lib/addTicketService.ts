@@ -15,8 +15,8 @@ export async function createClient(name: string,telephone:string, email: string)
   return clientRef.id;
 }
 
-export async function createTicket(clientId: string, ticketType: string) {
-  const ticketId = uuidv4();
+export async function createTicket(clientId: string, ticketType: string,id:string) {
+  const ticketId = id;
   const qrCode = await QRCode.toDataURL(ticketId);
   const ticketRef = await addDoc(collection(db, "tickets"), {
     clientId,

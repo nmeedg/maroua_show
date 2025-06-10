@@ -45,49 +45,68 @@ export default function LoginPage({
   const [open, setOpen] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  async function processPayment() {
-    try {
-      const response = await fetch('/api/payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phoneNumber: '656893065',
-          amount: 1000, // Example amount
-          service: 'your_service',
-        }),
-      });
-      console.log(response);
-
-      const data = await response.json();
-      console.log('Payment response:', data);
-    } catch (error) {
-      console.error('Payment error:', error);
-    }
-  }
-
   const handleClick = async (e: FormEvent) => {
     e.preventDefault();
     if (nom == "" || prenom == "" || email == "" || telephone == null) {
       toast.warning("Il faut remplir tous les champs");
       return;
     }
-    await processPayment();
-    // setOpen(true);
+    setOpen(true);
   };
   const router = useRouter();
 
   const handleTicket = async () => {
     setLoading(true);
-
+    let userName = `${nom} ${prenom}`;
+    const allInfo = {
+      userName,
+      telephone,
+      email,
+      ticketType,
+      id: uuidv4()
+    };
+    const jsonString = JSON.stringify(allInfo);
+    const encoded = encodeURIComponent(jsonString);
     try {
-      const clientID = await createClient(`${nom} ${prenom}`, telephone, email);
-      const ticketInfo = await createTicket(clientID, ticketType);
-      toast.success("Ticket enregistrer avec success");
-      setLoading(false);
-      const username = `${nom} ${prenom}`
-      router.push(`/confirmation?nom=${encodeURIComponent(username)}&id=${ticketInfo.id}&type=${ticketType}`)
+      fetch("https://api.notchpay.co/payments", {
+        method: "POST",
+        headers: {
+          Authorization:
+            "pk_test.tWmAza2sxC39973moiKkRysYSa85TI6gdXE8XSZtPu4yv3LOSPzCOQZ3TMznnTZz5DBXRtZpfDIf579BAvSvCzUgVaAxbIFT3XTdUpFQFwtdP68kGCwlaUnTApmwe",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: ticketType == "classique" ? 5000 : 10000,
+          currency: "XAF",
+          customer: {
+            name: "Ngoufack Edgard",
+            email: "ngoufackedgard1@gmail.com",
+            phone: "+237695903241",
+          },
+          description: "Achat du ticket pour le concert",
+          callback:
+            `https://simple-tadpole-prepared.ngrok-free.app/confirmationPayment?payload=${encoded}`,
+          reference: allInfo.id,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Redirect to the collect page
+          console.log(data);
+          setLoading(false);
+          window.location.href = data.authorization_url;
+        })
+        .catch((error) => console.error("Error:", error));
+      // const clientID = await createClient(`${nom} ${prenom}`, telephone, email);
+      // const ticketInfo = await createTicket(clientID, ticketType);
+      // toast.success("Ticket enregistrer avec success");
+      // setLoading(false);
+      // const username = `${nom} ${prenom}`;
+      // router.push(
+      //   `/confirmation?nom=${encodeURIComponent(username)}&id=${
+      //     ticketInfo.id
+      //   }&type=${ticketType}`
+      // );
     } catch (error: any) {
       toast.error(error.message);
       setLoading(false);
@@ -95,8 +114,8 @@ export default function LoginPage({
   };
   const liens = {
     cinqmil: "https://pay.mesomb.com/l/uwhnSJovDqbOjxXZWHgv",
-    dixmil: "https://pay.mesomb.com/l/Tw4NDZWHtrCmFhmHnk5Y"
-  }
+    dixmil: "https://pay.mesomb.com/l/Tw4NDZWHtrCmFhmHnk5Y",
+  };
   return (
     <div className="grid min-h-svh lg:bg-transparent lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
@@ -190,17 +209,20 @@ export default function LoginPage({
 
                 <Dialog open={open} onOpenChange={(e) => setOpen(e)}>
                   <DialogTrigger asChild>
-                    <Button onClick={(e) => {
-                      e.preventDefault();
-                      handleClick(e);
-                      // if (ticketType == "classique") {
-                      //   toast.info("Vous avez choisi le ticket classique");
-                      // } else {
-                      //   toast.info("Vous avez choisi le ticket VIP");
-                      // }
-                      //window.location.href = ticketType == "classique" ? liens.cinqmil : liens.dixmil;
-                      // window.location.href = "https://pay.mesomb.com/l/eo0TGFAKFcXEAjDqhvGi";
-                    }} className="w-full">
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleClick(e);
+                        // if (ticketType == "classique") {
+                        //   toast.info("Vous avez choisi le ticket classique");
+                        // } else {
+                        //   toast.info("Vous avez choisi le ticket VIP");
+                        // }
+                        //window.location.href = ticketType == "classique" ? liens.cinqmil : liens.dixmil;
+                        // window.location.href = "https://pay.mesomb.com/l/eo0TGFAKFcXEAjDqhvGi";
+                      }}
+                      className="w-full"
+                    >
                       Je paie en ligne
                     </Button>
                   </DialogTrigger>
@@ -289,7 +311,7 @@ export default function LoginPage({
                       {loading ? (
                         <Button disabled>
                           <Loader2Icon className="animate-spin" />
-                          Ticket en Cours de generation
+                          Lien de paiement en cours de generation
                         </Button>
                       ) : (
                         <Button variant="secondary" onClick={handleTicket}>
