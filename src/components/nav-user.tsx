@@ -1,7 +1,6 @@
 "use client"
 
 import {
-  IconCreditCard,
   IconDotsVertical,
   IconLogout,
   IconNotification,
@@ -58,7 +57,7 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">EK</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">Empire By K'role</span>
+                <span className="truncate font-medium">Empire By K&apos;role</span>
                 <span className="text-muted-foreground truncate text-xs">
                   {user.email}
                 </span>
@@ -79,7 +78,7 @@ export function NavUser({
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Empire By K'role</span>
+                  <span className="truncate font-medium">Empire By K&apos;role</span>
                 <span className="text-muted-foreground truncate text-xs">
                   {user.email}
                 </span>

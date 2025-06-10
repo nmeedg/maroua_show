@@ -3,10 +3,7 @@
 import {
   IconDots,
   IconDownload,
-  IconFolder,
   IconFolderOpen,
-  IconShare3,
-  IconTrash,
   type Icon,
 } from "@tabler/icons-react"
 
@@ -14,7 +11,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { CircleCheck, CpuIcon, TicketPercentIcon } from "lucide-react";
+import { CircleCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { IconTicket } from "@tabler/icons-react";
 const options = [

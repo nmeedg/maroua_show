@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react"
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import Image from 'next/image';
 import Autoplay from "embla-carousel-autoplay"
 import Particles from "react-tsparticles";

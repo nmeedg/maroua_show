@@ -1,19 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import QRCode from "qrcode";
 import { Badge } from "@/components/ui/badge";
 import {
-  ArrowUpRight,
-  CirclePlay,
   DownloadIcon,
   QrCodeIcon,
-  Router,
 } from "lucide-react";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { toast } from "sonner";
@@ -24,7 +20,6 @@ function page() {
   const params = useSearchParams();
   const nom = params.get("nom");
   const id = params.get("id");
-  const ticketType = params.get("type");
   const [imgUrl, setImgUrl] = useState<string>("");
 
   const [ticket, setTicket] = useState<null | {

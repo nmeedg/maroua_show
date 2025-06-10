@@ -1,8 +1,6 @@
 import { db } from "@/lib/firebase";
-import { collection, addDoc, Timestamp, serverTimestamp } from "firebase/firestore";
-import { v4 as uuidv4 } from "uuid";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import QRCode from "qrcode";
-import { RefObject } from "react";
 
 export async function createClient(name: string,telephone:string, email: string) {
   const clientRef = await addDoc(collection(db, "clients"), {
