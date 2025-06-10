@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   AreaChart,
@@ -7,15 +7,15 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from "recharts"
-import dayjs from "dayjs"
-import { useEffect, useState } from "react"
-import { db } from "@/lib/firebase" // adapte ce chemin selon ton projet
-import { collection, getDocs, query, orderBy } from "firebase/firestore"
+} from "recharts";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import { db } from "@/lib/firebase"; // adapte ce chemin selon ton projet
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
-    const ticket = payload[0].payload
+    const ticket = payload[0].payload;
     return (
       <div className="rounded-xl bg-white p-4 shadow-lg dark:bg-zinc-900">
         <p className="text-sm text-zinc-400">
@@ -25,37 +25,52 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           {ticket.type} – {ticket.price.toLocaleString()} FCFA
         </p>
       </div>
-    )
+    );
   }
-  return null
-}
+  return null;
+};
 
 export default function PaymentChart() {
-  const [chartData, setChartData] = useState<any[]>([])
+  const [chartData, setChartData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const q = query(collection(db, "tickets"), orderBy("date", "asc"))
-        const snapshot = await getDocs(q)
-
-        const data = snapshot.docs.map((doc) => {
-          const ticket = doc.data()
+          const q = query(collection(db, "tickets"), orderBy("createdAt", "asc"));
+        const ticketSnapshot = await getDocs(q);
+        // const ticketsData = ticketSnapshot.docs.map((doc) => doc.data());
+        const data = ticketSnapshot.docs.map((doc) => {
+          const ticket = doc.data();
           return {
             ...ticket,
-            x: dayjs(ticket.date.toDate()).format("YYYY-MM-DD HH:mm"),
-            date: ticket.date.toDate(), // pour l'affichage dans tooltip
-          }
-        })
+            price: ticket.ticketType == "vip" ? 10000 : 5000,
+            type: ticket.ticketType,
+            x: dayjs(ticket.createdAt.toDate()).format("YYYY-MM-DD HH:mm"),
+            date: ticket.createdAt.toDate(), // pour l'affichage dans tooltip
+          };
+        });
 
-        setChartData(data)
+        console.log(data);
+
+        setChartData(data);
       } catch (error) {
-        console.error("Erreur lors du chargement des données Firestore :", error)
+        console.error(
+          "Erreur lors du chargement des données Firestore :",
+          error
+        );
+      } finally {
+        setLoading(false);
       }
     }
 
-    fetchData()
-  }, [])
+    fetchData();
+    // setChartData(data);
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="h-[300px] w-full rounded-xl bg-background p-4 shadow-sm">
@@ -90,5 +105,5 @@ export default function PaymentChart() {
         </AreaChart>
       </ResponsiveContainer>
     </div>
-  )
+  );
 }

@@ -49,7 +49,7 @@ export function SectionCards({
         <CardHeader>
           <CardDescription>Billets VIP</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            {parseInt(vipCount)*10000}
+            {parseInt(vipCount)*10000} FCFA
           </CardTitle>
           <CardAction>
             <Badge variant="outline">

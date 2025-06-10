@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { collection, DocumentData, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import PaymentChart from "@/components/Paiements";
+import { DataTableDemo } from "@/components/ClientTable";
 
 export default function Page() {
   const [user, setUser] = useState<any>(null);
@@ -73,7 +74,7 @@ export default function Page() {
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
-              <DataTable data={data} />
+              <DataTableDemo ></DataTableDemo>
             </div>
           </div>
         </div>
