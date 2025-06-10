@@ -71,7 +71,7 @@ export default function LoginPage() {
           },
           description: "Achat du ticket pour le concert",
           callback:
-            `https://simple-tadpole-prepared.ngrok-free.app/confirmationPayment?payload=${encoded}`,
+            `https://maroua-show.vercel.app/confirmationPayment?payload=${encoded}`,
           reference: allInfo.id,
         }),
       })
