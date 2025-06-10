@@ -9,7 +9,7 @@ import {
   ArrowPathIcon,
   LockClosedIcon,
 } from '@heroicons/react/24/outline';
-import { ListStartIcon,  Music } from 'lucide-react';
+import { ListStartIcon, Music } from 'lucide-react';
 import { Backimg, ParticlesBackground } from './components/backImg';
 import { FooterClips } from './components/footer';
 import { useRouter } from 'next/navigation';
@@ -68,12 +68,12 @@ export default function Home() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: -5 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
-                  className='flex items-center gap-6 mb-1'>
-                  <Image src="/images/minks.png" alt="Mink's et Bad Nova sur scène" width={150} height={190} />
+                  className='flex items-center gap-6 mt-12 mr-2'>
+                  <Image src="/images/minks.png" alt="Mink's et Bad Nova sur scène" width={203} height={240} />
                   <Image src="/images/laid.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
                 </motion.div>
               </div>
-              <div className="sm:py-12 h-200">
+              <div className="sm:py-12">
 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.4, y: 30 }}
@@ -93,12 +93,12 @@ export default function Home() {
                     </p>
                   </div>
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5, y: 40 }}
                   animate={{ opacity: 1, scale: 1, y: -5 }}
                   transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-center justify-center mt-10">
-                  <Button onClick={()=>{
+                  <Button onClick={() => {
                     router.push('/tickets');
                   }} className='w-80 h-15 bg-white/20 border-2 border-primary animate-bounce hover:cursor-pointer '><span className='font-stretch-200% text-xl  lg:text-2xl text-secondary-foreground font-extrabold  lg:text-balance'>Achète ton ticket</span></Button>
                 </motion.div>
@@ -122,19 +122,15 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="sm:py-12 lg:h-260 ">
+              <div className="flex sm:py-12 h-100 lg:h-260 justify-center items-center">
                 <motion.div
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }} className='flex items-center gap-6 mb-1'>
+                  transition={{ duration: 0.7, ease: "easeOut" }} className='xs:hidden flex items-center gap-6 mb-1'>
 
                   <Image src="/images/bouges.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
-                  <Image src="/images/mic.png" alt="Mink's et Bad Nova sur scène" width={130} height={190} />
-
-                  <Image src="/images/minks.png" alt="Mink's et Bad Nova sur scène" className='lg:hidden' width={105} height={190} />
-                  <Image src="/images/laid.png" alt="Mink's et Bad Nova sur scène" className='lg:hidden' width={100} height={100} />
+                  <Image src="/images/mic.png" alt="Mink's et Bad Nova sur scène" width={203} height={240} />
                 </motion.div>
-
               </div>
 
             </dl>
@@ -148,7 +144,7 @@ export default function Home() {
         initial={{ opacity: 0, scale: 0.5, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: -5 }}
         transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-end justify-end mt-1">
-        <Button variant="outline"><Link href="/dashboard" className='flex font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'><ListStartIcon className='mr-1'/>Dashboard  </Link></Button>
+        <Button variant="outline"><Link href="/dashboard" className='flex font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'><ListStartIcon className='mr-1' />Dashboard  </Link></Button>
       </motion.div>
       <footer className="w-full py-4 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
         <p className="text-center text-sm text-gray-500 dark:text-gray-300">
