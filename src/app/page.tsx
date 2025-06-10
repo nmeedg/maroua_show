@@ -1,21 +1,18 @@
 'use client';
 
-import { MapIcon, MapPinIcon } from '@heroicons/react/16/solid';
+import { MapPinIcon } from '@heroicons/react/16/solid';
 import { Button } from "@/components/ui/button"
 import Link from 'next/link';
 import { motion } from "framer-motion";
 import Image from 'next/image';
 import {
   ArrowPathIcon,
-  CloudArrowUpIcon,
-  FingerPrintIcon,
   LockClosedIcon,
 } from '@heroicons/react/24/outline';
-import { LocateFixedIcon, LocationEditIcon, Music, Music2Icon, Music3Icon, ShowerHeadIcon, TicketCheck, TicketCheckIcon, TicketIcon } from 'lucide-react';
+import { ListStartIcon,  Music } from 'lucide-react';
 import { ThemeProvider } from "next-theme";
 import { Backimg, ParticlesBackground } from './components/backImg';
 import { FooterClips } from './components/footer';
-import { DocumentCurrencyDollarIcon } from '@heroicons/react/20/solid';
 
 
 const features = [
@@ -48,7 +45,7 @@ const features = [
 export default function Home() {
   return (
     <ThemeProvider defaultTheme="dark" attribute="class">
-      <div className="relative">
+      <div className="relative  bg-gradient-to-r from-black to-blue-950">
         <div className='flex items-start justify-start top-0 left-0 w-full h-full absolute z-3'>
           <div className='relative'>
             <div className='top-0 left-0'>
@@ -65,7 +62,7 @@ export default function Home() {
             <dl className="w-full grid grid-cols-1 gap-x-2 gap-y-2 lg:flex lg:justify-between">
               <ParticlesBackground />
 
-              <div className="hidden lg:block lg:h-200 lg:ml-11">
+              <div className="hidden lg:block lg:h-200 lg:ml-5">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: -5 }}
@@ -75,7 +72,7 @@ export default function Home() {
                   <Image src="/images/laid.png" alt="Mink's et Bad Nova sur scène" width={100} height={100} />
                 </motion.div>
               </div>
-              <div className="sm:py-12 lg:h-200">
+              <div className="sm:py-12 h-200">
 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.4, y: 30 }}
@@ -95,8 +92,15 @@ export default function Home() {
                     </p>
                   </div>
                 </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5, y: 40 }}
+                  animate={{ opacity: 1, scale: 1, y: -5 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-center justify-center mt-10">
+                  <Button className='w-80 h-15 bg-white/20 border-2 border-primary animate-bounce hover:cursor-pointer '><Link href="/tickets" className='font-stretch-200% text-xl  lg:text-2xl text-secondary-foreground font-extrabold  lg:text-balance'>Achète ton ticket</Link></Button>
+                </motion.div>
 
-                <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                <div className="mx-auto mt-10 max-w-2xl sm:mt-10 lg:mt-14 lg:max-w-4xl">
                   <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
                     {features.map((feature) => (
                       <div key={feature.name} className="relative pl-16">
@@ -113,16 +117,9 @@ export default function Home() {
                     ))}
                   </dl>
                 </div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5, y: 40 }}
-                  animate={{ opacity: 1, scale: 1, y: -5 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-center justify-center mt-10">
-                  <Button variant="outline" className='w-80 h-15'><Link href="/tickets" className='font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'>Achète ton ticket</Link></Button>
-                </motion.div>
               </div>
 
-              <div className="sm:py-12 lg:h-260">
+              <div className="sm:py-12 lg:h-260 ">
                 <motion.div
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -148,10 +145,10 @@ export default function Home() {
         initial={{ opacity: 0, scale: 0.5, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: -5 }}
         transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-end justify-end mt-1">
-        <Button variant="outline"><Link href="/dashboard" className='font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'>Dashboard</Link></Button>
+        <Button variant="outline"><Link href="/dashboard" className='flex font-stretch-200% font-extrabold sm:text-3xl lg:text-balance'><ListStartIcon className='mr-1'/>Dashboard  </Link></Button>
       </motion.div>
       <footer className="w-full py-4 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
-        <p className="text-center text-sm text-gray-700 dark:text-gray-300">
+        <p className="text-center text-sm text-gray-500 dark:text-gray-300">
           © Horizon 2025 — Tous droits réservés.
         </p>
       </footer>
