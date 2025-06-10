@@ -132,7 +132,7 @@ export function DataTableDemo() {
     {
       accessorKey: "ticketType",
       header: () => <div className="">Type de billet</div>,
-      cell: ({ row }) => {
+      cell: ({ row }: { row: any }) => {
         return (
           <div className=" font-medium">
             {row.getValue("ticketType").toUpperCase()}
@@ -143,7 +143,7 @@ export function DataTableDemo() {
     {
       accessorKey: "createdAt",
       header: "Date d'achat",
-      cell: ({ row }) =>
+      cell: ({ row }: { row: any }) =>
         row.getValue("createdAt") instanceof Date
           ? row.getValue("createdAt").toLocaleString()
           : "—",

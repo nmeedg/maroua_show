@@ -18,6 +18,7 @@ export function AdduserForm({
 }: React.ComponentProps<"div">) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setusername] = useState("");
   const [visible, setVisible] = useState(false);
 
   const router = useRouter();
@@ -65,7 +66,7 @@ export function AdduserForm({
                   type="email"
                   placeholder="m@yahoo.fr"
                   required
-                  value={email}
+                  
                 />
               </div>
               <div className="grid gap-3">
