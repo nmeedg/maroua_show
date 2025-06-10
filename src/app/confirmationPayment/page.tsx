@@ -1,14 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Loader2Icon } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient, createTicket } from "@/lib/addTicketService";
 
 function Page() {
-  const searchParams = useSearchParams();
   const router = useRouter();
 
   useEffect(() => {

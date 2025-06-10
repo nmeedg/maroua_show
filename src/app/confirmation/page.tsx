@@ -2,14 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  DownloadIcon,
-  QrCodeIcon,
-} from "lucide-react";
+import { DownloadIcon, QrCodeIcon } from "lucide-react";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-import { useSearchParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { toast } from "sonner";
@@ -17,7 +13,7 @@ import { downloadBase64Image } from "@/lib/addTicketService";
 
 function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const params = useSearchParams();
+  const params = new URLSearchParams(window.location.search);
   const nom = params.get("nom");
   const id = params.get("id");
   const [imgUrl, setImgUrl] = useState<string>("");
@@ -30,7 +26,7 @@ function Page() {
   }>(null);
 
   const [loading, setLoading] = useState(true);
-  
+
   const generateTicket = async () => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
