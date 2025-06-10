@@ -13,6 +13,7 @@ import { ListStartIcon,  Music } from 'lucide-react';
 import { ThemeProvider } from "next-theme";
 import { Backimg, ParticlesBackground } from './components/backImg';
 import { FooterClips } from './components/footer';
+import { useRouter } from 'next/navigation';
 
 
 const features = [
@@ -43,8 +44,9 @@ const features = [
 ];
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <ThemeProvider defaultTheme="dark" attribute="class">
+    <div>
       <div className="relative  bg-gradient-to-r from-black to-blue-950">
         <div className='flex items-start justify-start top-0 left-0 w-full h-full absolute z-3'>
           <div className='relative'>
@@ -97,7 +99,9 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.5, y: 40 }}
                   animate={{ opacity: 1, scale: 1, y: -5 }}
                   transition={{ duration: 0.7, ease: "easeOut" }} className="flex items-center justify-center mt-10">
-                  <Button className='w-80 h-15 bg-white/20 border-2 border-primary animate-bounce hover:cursor-pointer '><Link href="/tickets" className='font-stretch-200% text-xl  lg:text-2xl text-secondary-foreground font-extrabold  lg:text-balance'>Achète ton ticket</Link></Button>
+                  <Button onClick={()=>{
+                    router.push('/tickets');
+                  }} className='w-80 h-15 bg-white/20 border-2 border-primary animate-bounce hover:cursor-pointer '><span className='font-stretch-200% text-xl  lg:text-2xl text-secondary-foreground font-extrabold  lg:text-balance'>Achète ton ticket</span></Button>
                 </motion.div>
 
                 <div className="mx-auto mt-10 max-w-2xl sm:mt-10 lg:mt-14 lg:max-w-4xl">
@@ -154,7 +158,7 @@ export default function Home() {
       </footer>
 
 
-    </ThemeProvider>
+    </div>
 
   );
 }
