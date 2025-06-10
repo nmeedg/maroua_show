@@ -21,9 +21,7 @@ import {
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
-export default function LoginPage({
-  className,
-}: React.ComponentProps<"form">) {
+export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [nom, setNom] = useState("");
   const [prenom, setprenom] = useState("");
